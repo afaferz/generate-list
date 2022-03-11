@@ -5,14 +5,22 @@ interface ListPageProps {
 }
 
 export const ListPage = styled.div<ListPageProps>`
-    width: 100%;
-    height: 100%;
-    max-width: 650px;
-    min-height: 90vh;
-    margin: 0 auto;
     border: 1px solid black;
     display: ${({ isVisible }) => isVisible ? 'flex' : 'none'};
     flex-direction: column;
+    margin: 0 auto;
+    height: 100%;
+    max-width: 650px;
+    min-height: 90vh;
+    width: 100%;
+    .page-number__box {
+        display: inline-flex;
+        margin: 1em;
+        justify-content: end;
+        .page-number {
+            padding: 1em;
+        }
+    }
     @media print {
         page-break-after: always;
         display: flex;

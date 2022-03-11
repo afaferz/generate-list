@@ -8,7 +8,7 @@ interface ListConfigProps {
     secondary_logo?: string;
     rowsNumber: number | string;
     insertNames: boolean;
-    namesArray: string[]
+    namesArray: string[];
 }
 
 const AttendanceList: React.FC<ListConfigProps> = ({
@@ -102,6 +102,9 @@ const AttendanceList: React.FC<ListConfigProps> = ({
                                     })}
                                 </tbody>
                             </ListTable>
+                            <div className="page-number__box">
+                                <span className="page-number__number">Page {i + 1}</span>
+                            </div>
                         </ListPage>
                     </>
                 );
