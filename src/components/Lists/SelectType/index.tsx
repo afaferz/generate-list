@@ -1,20 +1,23 @@
 import React from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const SelectType: React.FC = () => {
     const [listType, setListType] = React.useState<string | null>(null);
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     const redirectToListType = (listType: string) => {
-        navigate(`/list?type=${listType}`)
-    }
+        navigate(`/list?type=${listType}`);
+    };
 
     return (
         <React.Fragment>
             <h2>{listType}</h2>
             <div style={{ display: "flex", flexDirection: "row" }}>
                 <div
-                    onClick={() => redirectToListType("attendance")}
+                    onClick={() => {
+                        redirectToListType("attendance");
+                        setListType("attendance");
+                    }}
                     style={{
                         padding: "6em",
                         border: "2px solid red",
@@ -25,7 +28,10 @@ const SelectType: React.FC = () => {
                     A
                 </div>
                 <div
-                    onClick={() => redirectToListType("party")}
+                    onClick={() => {
+                        redirectToListType("party");
+                        setListType("party");
+                    }}
                     style={{
                         padding: "6em",
                         border: "2px solid red",
@@ -36,7 +42,10 @@ const SelectType: React.FC = () => {
                     B
                 </div>
                 <div
-                    onClick={() => redirectToListType("event")}
+                    onClick={() => {
+                        redirectToListType("event");
+                        setListType("event");
+                    }}
                     style={{
                         padding: "6em",
                         border: "2px solid red",

@@ -6,6 +6,7 @@ interface ListConfigProps {
     title: string;
     primary_logo?: string;
     secondary_logo?: string;
+    insertLogos?: boolean;
     rowsNumber: number | string;
     insertNames: boolean;
     namesArray: string[];
@@ -15,6 +16,7 @@ const AttendanceList: React.FC<ListConfigProps> = ({
     title,
     primary_logo,
     secondary_logo,
+    insertLogos,
     rowsNumber,
     namesArray,
 }) => {
@@ -46,15 +48,19 @@ const AttendanceList: React.FC<ListConfigProps> = ({
                         key={`page + ${i}`}
                     >
                         <ListHeader>
-                            <div className="logo__box">
-                                <img src={primary_logo} alt="" />
-                            </div>
+                            {insertLogos && (
+                                <div className="logo__box">
+                                    <img src={primary_logo} alt="" />
+                                </div>
+                            )}
                             <div className="title__box">
                                 <h4>{title ? title : "Your title here"}</h4>
                             </div>
-                            <div className="logo__box">
-                                <img src={secondary_logo} alt="" />
-                            </div>
+                            {insertLogos && (
+                                <div className="logo__box">
+                                    <img src={secondary_logo} alt="" />
+                                </div>
+                            )}
                         </ListHeader>
                         <ListSubheader>
                             <div className="subheader__item institution">

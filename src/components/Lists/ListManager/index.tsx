@@ -16,14 +16,16 @@ const ListManager: React.FC = () => {
         title: string;
         primary_logo: string;
         secondary_logo: string;
+        insertLogos: boolean;
         rowsNumber: 0;
-        insertNames: false;
+        insertNames: boolean;
         names: string;
         namesArray: string[];
     }>({
         title: "",
         primary_logo: "",
         secondary_logo: "",
+        insertLogos: true,
         rowsNumber: 0,
         insertNames: false,
         names: "",
@@ -95,6 +97,23 @@ const ListManager: React.FC = () => {
                                 handleListConfigs([
                                     "insertNames",
                                     !listConfigs.insertNames,
+                                ])
+                            }
+                            inputProps={{ "aria-label": "controlled" }}
+                        />
+                    }
+                />
+            </div>
+            <div>
+                <FormControlLabel
+                    label="Insert Logo"
+                    control={
+                        <Checkbox
+                            checked={listConfigs.insertLogos}
+                            onChange={(e) =>
+                                handleListConfigs([
+                                    "insertLogos",
+                                    !listConfigs.insertLogos,
                                 ])
                             }
                             inputProps={{ "aria-label": "controlled" }}
