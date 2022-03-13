@@ -41,72 +41,66 @@ const AttendanceList: React.FC<ListConfigProps> = ({
         <>
             {sheetToCreate.map((item, i) => {
                 return (
-                    <>
-                        <ListPage
-                            isVisible={currentSheet === i + 1}
-                            key={`page + ${i}`}
-                        >
-                            <ListHeader>
-                                <div className="logo__box">
-                                    <img src={primary_logo} alt="" />
-                                </div>
-                                <h4>{title ? title : "Your title here"}</h4>
-                                <div className="logo__box">
-                                    <img src={secondary_logo} alt="" />
-                                </div>
-                            </ListHeader>
-                            <ListSubheader>
-                                <div className="subheader__item institution">
-                                    <span className="subheader__label">
-                                        INSTITUTION:
-                                    </span>
-                                </div>
-                                <div className="subheader__item departament">
-                                    <span className="subheader__label">
-                                        DEPARTAMENT:
-                                    </span>
-                                </div>
-                                <div className="subheader__item event">
-                                    <span className="subheader__label">
-                                        EVENT:
-                                    </span>
-                                </div>
-                                <div className="subheader__item date">
-                                    <span className="subheader__label">
-                                        DATE:
-                                    </span>
-                                </div>
-                                <div className="subheader__item shift">
-                                    <span className="subheader__label">
-                                        SHIFT:
-                                    </span>
-                                </div>
-                            </ListSubheader>
-                            <ListTable>
-                                <thead>
-                                    <tr>
-                                        <th>Nº</th>
-                                        <th>Name</th>
-                                        <th>Assign</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {item.map((n) => {
-                                        return (
-                                            <tr key={n}>
-                                                <td>{n <= 9 ? `0${n}` : n}</td>
-                                                <td>{namesArray[n - 1]}</td>
-                                                <td></td>
-                                            </tr>
-                                        );
-                                    })}
-                                </tbody>
-                            </ListTable>
-                            <div className="page-number__box">
-                                <span className="page-number__number">Page {i + 1}</span>
+                    <ListPage
+                        isVisible={currentSheet === i + 1}
+                        key={`page + ${i}`}
+                    >
+                        <ListHeader>
+                            <div className="logo__box">
+                                <img src={primary_logo} alt="" />
                             </div>
-                        </ListPage>
-                    </>
+                            <h4>{title ? title : "Your title here"}</h4>
+                            <div className="logo__box">
+                                <img src={secondary_logo} alt="" />
+                            </div>
+                        </ListHeader>
+                        <ListSubheader>
+                            <div className="subheader__item institution">
+                                <span className="subheader__label">
+                                    INSTITUTION:
+                                </span>
+                            </div>
+                            <div className="subheader__item departament">
+                                <span className="subheader__label">
+                                    DEPARTAMENT:
+                                </span>
+                            </div>
+                            <div className="subheader__item event">
+                                <span className="subheader__label">EVENT:</span>
+                            </div>
+                            <div className="subheader__item date">
+                                <span className="subheader__label">DATE:</span>
+                            </div>
+                            <div className="subheader__item shift">
+                                <span className="subheader__label">SHIFT:</span>
+                            </div>
+                        </ListSubheader>
+                        <ListTable>
+                            <thead>
+                                <tr>
+                                    <th>Nº</th>
+                                    <th>Name</th>
+                                    <th>Assign</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {item.map((n) => {
+                                    return (
+                                        <tr key={n}>
+                                            <td>{n <= 9 ? `0${n}` : n}</td>
+                                            <td>{namesArray[n - 1]}</td>
+                                            <td></td>
+                                        </tr>
+                                    );
+                                })}
+                            </tbody>
+                        </ListTable>
+                        <div className="page-number__box">
+                            <span className="page-number__number">
+                                Page {i + 1}
+                            </span>
+                        </div>
+                    </ListPage>
                 );
             })}
             <Pagination

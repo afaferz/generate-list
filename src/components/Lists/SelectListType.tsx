@@ -4,8 +4,11 @@ import { FormControlLabel, TextField, Checkbox, Button } from "@mui/material";
 import PartyList from "./PartyList";
 import EventList from "./EventList";
 import AttendanceList from "./AttendanceList";
+import { PrettyAlertsContext } from "../../context/PrettyAlertsContext";
 
 const SelectListType: React.FC = () => {
+    const { showAlert } = React.useContext(PrettyAlertsContext);
+
     const [listConfigs, setListConfigs] = useState<{
         title: string;
         primary_logo: string;
@@ -32,14 +35,19 @@ const SelectListType: React.FC = () => {
         const names = listConfigs.names.split("\n");
         // Verify if rows number match name quantity
         if (names.length < listConfigs.rowsNumber) {
-            console.log(
-                `Insira todos os nomes. Faltam ${
+            showAlert({
+                message: `Insira todos os nomes. Faltam ${
                     listConfigs.rowsNumber - names.length
-                }`
-            );
+                }`,
+                type: "warning",
+            });
             return;
         }
         setListConfigs({ ...listConfigs, namesArray: names });
+        showAlert({
+            message: 'Nomes adicionados a lista',
+            type: "success",
+        });
     };
     const handleResetNames = () => {
         setListConfigs({ ...listConfigs, namesArray: [] });
@@ -111,7 +119,7 @@ const SelectListType: React.FC = () => {
                     <Button
                         variant="contained"
                         size="medium"
-                        onClick={() => handleResetNames()}
+                        onClick={handleResetNames}
                     >
                         RESET
                     </Button>

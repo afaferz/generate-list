@@ -1,13 +1,18 @@
 import React from "react";
 import SelectListType from "./components/Lists/SelectListType";
+import PrettyAlerts from "./components/Custom/PrettyAlerts";
 import { Container } from "./app-styles";
+import { PrettyAlertsStorage } from "./context/PrettyAlertsContext";
 
 function App() {
     return (
         <>
-            <Container>
-                <SelectListType />
-            </Container>
+            <PrettyAlertsStorage>
+                <Container>
+                    <SelectListType />
+                </Container>
+                <PrettyAlerts />
+            </PrettyAlertsStorage>
         </>
     );
 }
