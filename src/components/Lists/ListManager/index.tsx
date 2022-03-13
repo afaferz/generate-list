@@ -1,15 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
+import { useSearchParams } from 'react-router-dom'
+import { PrettyAlertsContext } from "../../../context/PrettyAlertsContext";
 import { FormControlLabel, TextField, Checkbox, Button } from "@mui/material";
 
-import PartyList from "./PartyList";
-import EventList from "./EventList";
-import AttendanceList from "./AttendanceList";
-import { PrettyAlertsContext } from "../../context/PrettyAlertsContext";
+import PartyList from "../PartyList";
+import EventList from "../EventList";
+import AttendanceList from "../AttendanceList";
 
-const SelectListType: React.FC = () => {
+const ListManager: React.FC = () => {
     const { showAlert } = React.useContext(PrettyAlertsContext);
+    const [searchParams] = useSearchParams();
+    const listType = searchParams.get("type");
 
-    const [listConfigs, setListConfigs] = useState<{
+    const [listConfigs, setListConfigs] = React.useState<{
         title: string;
         primary_logo: string;
         secondary_logo: string;
@@ -44,13 +47,19 @@ const SelectListType: React.FC = () => {
             return;
         }
         setListConfigs({ ...listConfigs, namesArray: names });
+        // PrettyAlerts
         showAlert({
-            message: 'Nomes adicionados a lista',
+            message: "Nomes adicionados a lista",
             type: "success",
         });
     };
     const handleResetNames = () => {
         setListConfigs({ ...listConfigs, namesArray: [] });
+        // PrettyAlerts
+        showAlert({
+            message: "Nomes removidos da lista",
+            type: "success",
+        });
     };
     return (
         <React.Fragment>
@@ -126,11 +135,21 @@ const SelectListType: React.FC = () => {
                 </div>
             )}
 
-            <AttendanceList {...listConfigs} />
-            {/* <PartyList />
-            <EventList /> */}
+            {/* Choose list type */}
+            {(function () {
+                switch (listType) {
+                    case "attendance":
+                        return <AttendanceList {...listConfigs} />;
+                    case "party":
+                        return <PartyList />;
+                    case "event":
+                        return <EventList />;
+                    default:
+                        return null;
+                }
+            })()}
         </React.Fragment>
     );
 };
 
-export default SelectListType;
+export default ListManager;

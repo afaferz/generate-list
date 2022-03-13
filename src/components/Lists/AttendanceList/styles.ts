@@ -13,10 +13,12 @@ export const ListPage = styled.div<ListPageProps>`
     max-width: 650px;
     min-height: 90vh;
     width: 100%;
+    position: relative;
     .page-number__box {
-        display: inline-flex;
+        position: absolute;
+        bottom: -10px;
+        right: 0;
         margin: 1em;
-        justify-content: end;
         .page-number {
             padding: 1em;
         }
@@ -31,6 +33,11 @@ export const ListHeader = styled.header`
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    .title__box {
+        max-width: 200px;
+        height: auto;
+        word-break: break-all;
+    }
     .logo__box {
         border: 1px solid black;
         border-radius: 50%;

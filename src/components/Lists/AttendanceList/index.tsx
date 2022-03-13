@@ -49,7 +49,9 @@ const AttendanceList: React.FC<ListConfigProps> = ({
                             <div className="logo__box">
                                 <img src={primary_logo} alt="" />
                             </div>
-                            <h4>{title ? title : "Your title here"}</h4>
+                            <div className="title__box">
+                                <h4>{title ? title : "Your title here"}</h4>
+                            </div>
                             <div className="logo__box">
                                 <img src={secondary_logo} alt="" />
                             </div>
